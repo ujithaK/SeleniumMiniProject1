@@ -1,10 +1,10 @@
-package com.automation.config;
+package com.automation.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfigManager {
+public class ConfigReader {
 
     private static Properties prop = new Properties();
 
@@ -17,7 +17,7 @@ public class ConfigManager {
         }
     }
 
-    public static String getProperty(String key) {
+    public static String get(String key) {
         return prop.getProperty(key);
     }
 }

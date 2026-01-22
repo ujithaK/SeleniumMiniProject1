@@ -1,10 +1,11 @@
 package com.automation.base;
 
-import com.automation.config.ConfigManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.time.Duration;
 
 public class BaseTest {
 
@@ -12,13 +13,20 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        DriverFactory.initDriver(ConfigManager.getProperty("browser"));
-        driver = DriverFactory.getDriver();
-        driver.get(ConfigManager.getProperty("baseUrl"));
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterMethod
     public void tearDown() {
-        DriverFactory.quitDriver();
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    // Expose driver for TestListener
+    public WebDriver getDriver() {
+        return driver;
     }
 }
