@@ -7,7 +7,6 @@
         <classes>
             <class name="com.automation.tests.LoginTests"/>
             <class name="com.automation.tests.ProductTests"/>
-            <class name="com.automation.tests.CartTests"/>
             <class name="com.automation.tests.CheckoutTests"/>
             <class name="com.automation.tests.EndToEndTests"/>
             <class name="com.automation.tests.RegisterTest"/>

@@ -1,23 +1,29 @@
 package com.automation.utils;
 
-import com.automation.base.DriverFactory;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ScreenshotUtils {
 
-    public static String takeScreenshot(String name) {
+    public static void takeScreenshot(WebDriver driver, String testName) {
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String destPath = System.getProperty("user.dir") + "/screenshots/" + testName + "_" + timestamp + ".png";
+
         try {
-            File src = ((TakesScreenshot) DriverFactory.getDriver())
-                    .getScreenshotAs(OutputType.FILE);
-            String path = "C:\\Users\\Ujitha K\\Pictures\\Screenshots/" + name + ".png";
-            FileUtils.copyFile(src, new File(path));
-            return path;
-        } catch (Exception e) {
-            return null;
+            Files.createDirectories(Paths.get(System.getProperty("user.dir") + "/screenshots/"));
+            Files.copy(srcFile.toPath(), Paths.get(destPath));
+            System.out.println("Screenshot saved at: " + destPath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
