@@ -36,4 +36,7 @@ public class WaitUtils {
         return new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds))
                 .until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
+
+    public static void waitForClick(WebDriver driver, By accountDropdown, int i) {
+    }
 }

@@ -14,6 +14,11 @@ public class ProductsPage {
     private By productItem = By.xpath("//*[@id=\"product-1\"]/img"); // clickable link of product
     private By addToCart = By.id("add");
     private By cartIcon = By.xpath("//*[@id=\"minicart\"]/a[1]");
+    private By searchIcon = By.cssSelector("button.search-modal__toggle");
+    private By searchInput = By.cssSelector("input.search__input");
+    private By searchSubmit = By.cssSelector("button.search__button");
+    private By searchResultItems = By.cssSelector("li.grid__item"); // search result product cards
+
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
@@ -43,6 +48,23 @@ public class ProductsPage {
         // Scroll into view and click
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", addBtn);
         addBtn.click();
+    }
+
+    public void searchProduct(String productName) {
+        // Click Search Icon
+        WebElement searchBtn = WaitUtils.waitForClickable(driver, searchIcon, TIMEOUT);
+        searchBtn.click();
+
+        // Wait for Search Input
+        WebElement searchField = WaitUtils.waitForVisibility(driver, searchInput, TIMEOUT);
+        searchField.sendKeys(productName);
+
+        // Click Submit
+        WebElement submitBtn = WaitUtils.waitForClickable(driver, searchSubmit, TIMEOUT);
+        submitBtn.click();
+
+        // Wait for Results Page
+        WaitUtils.waitForVisibility(driver, searchResultItems, TIMEOUT);
     }
 
     public void openCart() {
