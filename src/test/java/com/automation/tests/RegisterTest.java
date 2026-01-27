@@ -3,13 +3,17 @@ package com.automation.tests;
 import com.automation.base.BaseTest;
 import com.automation.pages.RegisterPage;
 import com.automation.config.ConfigManager;
+import com.automation.utils.TestListener;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
+
+@Listeners(TestListener.class)
 public class RegisterTest extends BaseTest {
 
     @DataProvider(name = "registerData")

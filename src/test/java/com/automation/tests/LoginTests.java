@@ -3,9 +3,13 @@ package com.automation.tests;
 import com.automation.base.BaseTest;
 import com.automation.pages.LoginPage;
 import com.automation.config.ConfigManager;
+import com.automation.utils.TestListener;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+
+@Listeners(TestListener.class)
 public class LoginTests extends BaseTest {
 
     @Test

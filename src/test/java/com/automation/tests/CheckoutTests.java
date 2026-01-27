@@ -3,11 +3,15 @@ package com.automation.tests;
 import com.automation.base.BaseTest;
 import com.automation.config.ConfigManager;
 import com.automation.pages.*;
+import com.automation.utils.TestListener;
 import com.automation.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+
+@Listeners(TestListener.class)
 public class CheckoutTests extends BaseTest {
 
     @Test

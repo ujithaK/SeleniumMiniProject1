@@ -3,9 +3,13 @@ package com.automation.tests;
 import com.automation.base.BaseTest;
 import com.automation.config.ConfigManager;
 import com.automation.pages.*;
+import com.automation.utils.TestListener;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+
+@Listeners(TestListener.class)
 public class EndToEndTests extends BaseTest {
 
     @Test
